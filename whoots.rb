@@ -11,32 +11,7 @@ get '/' do
   erb :index
 end
 
-get '/one/*' do
-p "ONE"
-p request
-p params
-end
-
-get '/two/:z/:x/:y/*' do
-p "two"
-p request
-p params
-end
-
-get '/three/:z/:x/:y' do
-p "three"
-p request
-p params
-end
-
-get '/tmss/:z/:x/:y/:layer/*' do
-p request
-p params
-end
-
-
-get '/tms/:z/:x/:y/*' do
-p request
+get '/tms/:z/:x/:y/:layers/*' do
 p params
   x = params[:x].to_i
   y = params[:y].to_i
@@ -53,15 +28,13 @@ p params
   srs = "EPSG:900913"
   width = "256"
   height = "256"
-  layers = params[:layers] || params[:LAYERS] || ""
-  p layers
-  p params
+  layers = params[:layers] || ""
+  #p layers
+  #p params
+  map = params[:map] || ""
   base_url = params[:splat][0]
-  p base_url
-  url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers
-  #redirect params[:url]
-  #"Hello World! URL= " + url
-  p url
+  url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers+"&map="+map
+  #p url
   redirect url
 end
 
@@ -100,11 +73,12 @@ __END__
 @@ index
     <h2>Usage:</h2>
 
-    http://<%=request.host%>:<%=request.port%>/tms/z/x/y/?url=http://maps.nypl.org/warper/layers/wms/870 <br />
-    http://<%=request.host%>:<%=request.port%>/tms/19/154563/197076/?url=http://maps.nypl.org/warper/layers/wms/870
+    http://<%=request.host%>:<%=request.port%>/tms/z/x/y/870/http://maps.nypl.org/warper/layers/wms/870
+ <br />
+    http://<%=request.host%>:<%=request.port%>/tms/19/154563/197076/870/http://maps.nypl.org/warper/layers/wms/870
 
     <h2>OSM Potlatch example </h2>
-    http://www.openstreetmap.org/edit?lat=40.73658&lon=-73.87108&zoom=17&tileurl=http://whoots.mapwarper.net/tms/!/!/!/?url=http://maps.nypl.org/warper/layers/wms/870
+    http://www.openstreetmap.org/edit?lat=40.73658&lon=-73.87108&zoom=17&tileurl=http://0.0.0.0:4567/tms/!/!/!/870/http://maps.nypl.org/warper/layers/wms/870
 
 
 <br />
