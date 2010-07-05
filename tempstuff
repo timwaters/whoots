@@ -1,0 +1,13 @@
+http://www.openstreetmap.org/edit?lat=18.536839&lon=-72.303737&zoom=18&tileurl=http://0.0.0.0:4567/two/!/!/!/http://maps.geography.uc.edu/cgi-bin/mapserv?map=/home/cgn/public_html/maps/mapfiles/haiti2.map&version=1.1.0
+
+http://www.openstreetmap.org/edit?lat=18.536839&lon=-72.303737&zoom=18&tileurl=http://0.0.0.0:4567/two/!/!/!/http://maps.geography.uc.edu/cgi-bin/mapserv%3Fmap%3D/home/cgn/public_html/maps/mapfiles/haiti2.map%26version%3D1.1.0
+
+
+
+http://0.0.0.0:4567/two/!/!/!/
+
+http%3A%2F%2F0.0.0.0%3A4567%2Ftwo%2F!%2F!%2F!%2Fhttp%3A%2F%2Fmaps.geography.uc.edu%2Fcgi-bin%2Fmapserv%3Fmap%3D%2Fhome%2Fcgn%2Fpublic_html%2Fmaps%2Fmapfiles%2Fhaiti2.map%26version%3D1.1.0%26SERVICE%3DWMS%26REQUEST%3DGetMap%26FORMAT%3Dimage%2Fpng%26LAYERS%3DDG_crisis_event_service%26srs%3Depsg%3A4326%26exceptions%3Dapplication%2Fvnd.ogc.se_inimage%26
+
+http://www.openstreetmap.org/edit?lat=18.536839&lon=-72.303737&zoom=18&tileurl=http://0.0.0.0:4567/tmss/!/!/!/DG_crisis_event_service/http://maps.geography.uc.edu/cgi-bin/mapserv?map=/home/cgn/public_html/maps/mapfiles/haiti2.map
+
+
