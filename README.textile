@@ -1,0 +1,27 @@
+h1. WhooTS : Sinatra, Ruby, Mapserver mini WMS -> TMS Proxy
+
+h2. Installation
+
+You need :
+* Ruby!
+
+
+h2. Usage
+
+* Gives OSM/Google Tiles, not true TMS (maybe later)
+*
+h3. http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server
+
+h2. Examples
+* 1 http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013
+*
+* 2a. From: http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map&request=getMap&service=wms&version=1.1.1&format=image/jpeg&srs=epsg:4326&exceptions=application/vnd.ogc.se_inimage&layers=HAITI&
+*
+* 2b To: http://example.com/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map
+*
+* 2c Outputs: http://hypercube.telascience.org/cgi-bin/mapserv?bbox=-8051417.93739076,2107827.49199202,-8051265.06333419,2107980.36604859&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=HAITI&map=/home/ortelius/haiti/haiti.map&styles=
+
+h2. Notes
+Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:900913
+Doesn't do any caching.
+
