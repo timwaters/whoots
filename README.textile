@@ -24,4 +24,5 @@ h2. Examples
 h2. Notes
 Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:900913
 Doesn't do any caching.
+See whoots.rb index inline view for more examples and help!
 
