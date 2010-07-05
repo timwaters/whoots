@@ -69,7 +69,7 @@ __END__
 WhooTS - the tiny public wms to tms proxy</h1>
 <%= yield %>
 <hr />
-<p>About: Made with Sinatra and Ruby by Tim Waters tim@geothings.net <br />
+<p>About: Made with Sinatra and Ruby by Tim Waters tim@geothings.net  <a href="http://thinkwhere.wordpress.com/">Blog</a><br />
 Code available at: <a href="http://github.com/timwaters/whoots">github</a></p>
 </body></html>
 
