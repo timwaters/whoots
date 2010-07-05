@@ -9,8 +9,8 @@ You need :
 h2. Usage
 
 * Gives OSM/Google Tiles, not true TMS (maybe later)
-*
-h3. http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server
+
+<b>http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server</b>
 
 h2. Examples
 * 1 <code>http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013 </code>
