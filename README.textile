@@ -1,28 +1,36 @@
-h1. WhooTS : Sinatra, Ruby, Mapserver mini WMS -> TMS Proxy
+WhooTS - the tiny public wms to tms proxy 
 
-h2. Installation
-
-You need :
-* Ruby!
-
-
-h2. Usage
-
-* Gives OSM/Google Tiles, not true TMS (maybe later)
-*
-h3. http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server
-
-h2. Examples
-* 1 http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013
-*
-* 2a. From: http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map&request=getMap&service=wms&version=1.1.1&format=image/jpeg&srs=epsg:4326&exceptions=application/vnd.ogc.se_inimage&layers=HAITI&
-*
-* 2b To: http://example.com/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map
-*
-* 2c Outputs: http://hypercube.telascience.org/cgi-bin/mapserv?bbox=-8051417.93739076,2107827.49199202,-8051265.06333419,2107980.36604859&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=HAITI&map=/home/ortelius/haiti/haiti.map&styles=
-
-h2. Notes
-Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:900913
-Doesn't do any caching.
-See whoots.rb index inline view for more examples and help!
-
+ 
+h1. 
+WhooTS - the tiny public wms to tms proxy 
+h2. What is it? 
+It's a simple WMS to Google/OSM Scheme TMS proxy. You can use WMS servers in applications which only use those pesky "Slippy Tiles"
+ 
+h2. Usage: 
+h4. http://localhost:4567/tms/z/x/y/{layer}/http://path.to.wms.server 
+e.g
+http://localhost:4567/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013
+http://localhost:4567/tms/z/x/y/870/http://maps.nypl.org/warper/layers/wms/870
+Using this WMS server:
+http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map&request=getMap&service=wms&version=1.1.1&format=image/jpeg&srs=epsg:4326&exceptions=application/vnd.ogc.se_inimage&layers=HAITI&
+http://localhost:4567/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map
+http://localhost:4567/tms/19/154563/197076/870/http://maps.nypl.org/warper/layers/wms/870
+h2. Openstreetmap Potlatch editing example  
+h3. Map Warper "http://warper.geothings.net":http://warper.geothings.net  
+WMS Link: http://warper.geothings.net/maps/wms/2013
+http://www.openstreetmap.org/edit?lat=18.601316&lon=-72.32806&zoom=18&tileurl=http://localhost:4567/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013
+h3. NYPL Map Rectifier "http://maps.nypl.org":http://maps.nypl.org 
+http://www.openstreetmap.org/edit?lat=40.73658&lon=-73.87108&zoom=17&tileurl=http://localhost:4567/tms/!/!/!/870/http://maps.nypl.org/warper/layers/wms/870
+h3. Telascience Haiti "http://hypercube.telascience.org/haiti/":http://hypercube.telascience.org/haiti/ 
+http://www.openstreetmap.org/edit?lat=18.601316&lon=-72.32806&zoom=18&tileurl=http://localhost:4567/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map
+h2. Example Outputs 
+http://hypercube.telascience.org/cgi-bin/mapserv?bbox=-8051417.93739076,2107827.49199202,-8051265.06333419,2107980.36604859&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=HAITI&map=/home/ortelius/haiti/haiti.map&styles=
+http://maps.nypl.org/warper/layers/wms/870?bbox=-8223095.50291926,4973298.80834671,-8222789.75480612,4973604.55645985&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=870&map=&styles=
+h2. Important Notes 
+* Use only a WMS that supports SRS EPSG:900913 
+* Tiles are Google / OSM Scheme
+ 
+About: Made with Sinatra, Ruby, Mapserver Mapscript by Tim Waters tim@geothings.net 
+Code available at: "github":http://github.com/timwaters/whoots 
+ 
+ 
