@@ -12,7 +12,7 @@ get '/' do
 end
 
 get '/tms/:z/:x/:y/:layers/*' do
-  p params
+  #p params
   x = params[:x].to_i
   y = params[:y].to_i
   z = params[:z].to_i
@@ -34,7 +34,7 @@ get '/tms/:z/:x/:y/:layers/*' do
   map = params[:map] || ""
   base_url = params[:splat][0]
   url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers+"&map="+map+"&styles="
-  p url
+  #p url
   redirect url
 end
 
