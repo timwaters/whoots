@@ -13,7 +13,7 @@ h2. Usage
 h3. http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server
 
 h2. Examples
-* 1 <pre>http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013</pre>
+* 1 <code>http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013 </code>
 *
 * 2a. From: http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map&request=getMap&service=wms&version=1.1.1&format=image/jpeg&srs=epsg:4326&exceptions=application/vnd.ogc.se_inimage&layers=HAITI&
 *
