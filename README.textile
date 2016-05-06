@@ -1,4 +1,8 @@
-h1. WhooTS : Sinatra, Ruby - mini WMS -> TMS Proxy
+h1. WhooTS : Rack, Ruby + mini WMS -> TMS Proxy
+
+Whoots is the tiny public wms to tms proxy
+
+Its a simple WMS to Google/OSM Scheme TMS proxy. You can use WMS servers in applications which only use those pesky "Slippy Tiles" 
 
 h2. Installation
 
@@ -22,7 +26,7 @@ h2. Examples
 * 2c Outputs: http://hypercube.telascience.org/cgi-bin/mapserv?bbox=-8051417.93739076,2107827.49199202,-8051265.06333419,2107980.36604859&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=HAITI&map=/home/ortelius/haiti/haiti.map&styles=
 
 h2. Notes
-* Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:900913
+* Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:3857
 * Doesn't do any caching.
-* See whoots.rb index inline view for more examples and help!
+* See public/index.html for more examples and help!
 

@@ -1,12 +1,7 @@
-require 'rubygems'
-require 'vendor/rack/lib/rack'
-require 'vendor/sinatra/lib/sinatra'
-  
-set :run, false
-set :environment, :production
-#set :views, "views"
-set :inline_templates, 'whoots.rb'
-  
-require 'whoots.rb'
-run Sinatra::Application
+$:.unshift File.dirname(__FILE__)
+require 'whoots_app'
+use Rack::Reloader, 0  #<=- useful to uncomment for dev
+use Rack::Static, :urls => ["/images"], :root => "public", :index =>
+'index.html'
 
+run WhootsApp

@@ -1,0 +1,50 @@
+<html><head><title>WhooTS - the tiny public wms to tms proxy</title>
+<style>body{font-family: Arial, Helvetica, sans-serif;}</style>
+</head><body>
+<h1><img src="/images/whoots_tiles.jpg" />
+WhooTS - the tiny public wms to tms proxy</h1>
+<h2>What is it?</h2>
+<p>Its a simple WMS to Google/OSM Scheme TMS proxy. You can use WMS servers in applications which only use those pesky "Slippy Tiles"
+</p>
+
+<h2>Usage:</h2>
+<h4>http://whoots.mapwarper.net/tms/z/x/y/{layer}/http://path.to.wms.server</h4>
+
+e.g<br />
+http://whoots.mapwarper.net/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013<br />
+http://whoots.mapwarper.net/tms/z/x/y/870/http://maps.nypl.org/warper/layers/wms/870<br />
+<br />
+Using this WMS server:<br />
+http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map&request=getMap&service=wms&version=1.1.1&format=image/jpeg&srs=epsg:4326&exceptions=application/vnd.ogc.se_inimage&layers=HAITI&<br /><br />
+http://whoots.mapwarper.net/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map<br />
+<br />
+http://whoots.mapwarper.net/tms/19/154563/197076/870/http://maps.nypl.org/warper/layers/wms/870
+
+<h2>Openstreetmap Potlatch editing example </h2>
+
+<h3>Map Warper <a href="http://mapwarper.net">http://mapwarper.net</a> </h3>
+WMS Link: http://mapwarper.net/maps/wms/2013<br />
+<br />
+http://www.openstreetmap.org/edit?lat=18.601316&lon=-72.32806&zoom=18&tileurl=http://whoots.mapwarper.net/tms/!/!/!/2013/http://mapwarper.net/maps/wms/2013
+
+<h3>NYPL Map Rectifier <a href="http://maps.nypl.org">http://maps.nypl.org</a></h3>
+
+http://www.openstreetmap.org/edit?lat=40.73658&lon=-73.87108&zoom=17&tileurl=http://whoots.mapwarper.net/tms/!/!/!/870/http://maps.nypl.org/warper/layers/wms/870
+
+<h3>Telascience Haiti <a href="http://hypercube.telascience.org/haiti/">http://hypercube.telascience.org/haiti/</a></h3>
+http://www.openstreetmap.org/edit?lat=18.601316&lon=-72.32806&zoom=18&tileurl=http://whoots.mapwarper.net/tms/!/!/!/HAITI/http://hypercube.telascience.org/cgi-bin/mapserv?map=/home/ortelius/haiti/haiti.map<br /><br />
+
+<h2>Example Outputs</h2>
+http://hypercube.telascience.org/cgi-bin/mapserv?bbox=-8051417.93739076,2107827.49199202,-8051265.06333419,2107980.36604859&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=HAITI&map=/home/ortelius/haiti/haiti.map&styles=
+<br /><br />
+http://maps.nypl.org/warper/layers/wms/870?bbox=-8223095.50291926,4973298.80834671,-8222789.75480612,4973604.55645985&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:900913&width=256&height=256&layers=870&map=&styles=
+<br />
+
+<h2>Important Notes</h2>
+* Use only a WMS that supports SRS EPSG:3857 <br />
+* Tiles are Google / OSM Scheme
+
+<hr />
+<p>About: Made with Rack and Ruby by Tim Waters tim@geothings.net  <a href="http://thinkwhere.wordpress.com/">Blog</a><br />
+Code available at: <a href="http://github.com/timwaters/whoots">github</a></p>
+</body></html>
