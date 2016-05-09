@@ -5,7 +5,7 @@ class WhootsApp
  
   def self.call(env)
     req = Rack::Request.new(env)
-    puts req.path
+
     case req.path
     when /hi/
       Rack::Response.new("Hello World!")
@@ -14,7 +14,6 @@ class WhootsApp
       params = req.path.split("/")
   
       z,x,y,layer = params[2],params[3],params[4],params[5]
-      puts z,x,y,layer
 
       splat = params[6..params.length].join("/")
       query_params = req.query_string.split("&")
@@ -40,7 +39,6 @@ class WhootsApp
       map = query_params["map"] || ""
       base_url = splat
       url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers+"&map="+map+"&styles="
-      #puts url
 
       response = Rack::Response.new
       response.redirect(url, 302)
