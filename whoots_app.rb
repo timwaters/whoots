@@ -7,7 +7,7 @@ class WhootsApp
     req = Rack::Request.new(env)
 
     case req.path
-    when /hi/
+    when /^\/hi\b/
       Rack::Response.new("Hello World!")
     when /^\/tms\/\d+\/\d+\/\d+\/\w+\/*/
       #'/tms/:z/:x/:y/:layers/*'
