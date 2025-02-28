@@ -8,17 +8,35 @@ class WhootsApp
 
     case req.path
     when /^\/hi\b/
-      Rack::Response.new("Hello World!")
+      Rack::Response.new(["Hello World!"]).finish
     when /^\/tms\/\d+\/\d+\/\d+\/\w+\/*/
       #'/tms/:z/:x/:y/:layers/*'
       params = req.path.split("/")
+
+      # Validate numeric parameters
+      return [400, {'Content-Type' => 'text/plain'}, ['Invalid parameters']] unless (
+        params[2..4].all? { |p| p.match?(/\A\d+\z/) } 
+      )
+      
+      layer = params[5].to_s.gsub(/[^a-zA-Z0-9\-_\.:\s%]/, '')
+      
+      z,x,y = params[2],params[3],params[4]
+
+      scheme = params[6].strip.match?(/\Ahttps?:\z/) ? params[6].strip.chomp(':') : 'http'
   
-      z,x,y,layer = params[2],params[3],params[4],params[5]
-
-      splat = params[6..params.length].join("/")
-      query_params = req.query_string.split("&")
-
-      query_params =  Rack::Utils.parse_query(req.query_string)
+      # Sanitize splat path to prevent directory traversal
+      splat = "#{scheme}://" +  params[6..params.length]
+        .select { |p| p.match?(/\A[\w\-\.\/]+\z/) }
+        .join("/")
+      # splat = params[6..params.length].join("/")
+      # Validate splat is not empty after sanitization
+      return [400, {'Content-Type' => 'text/plain'}, ['Invalid path']] if splat.empty?
+      
+      query_params = Rack::Utils.parse_query(req.query_string)
+      
+      # Sanitize map parameter
+      map = query_params["map"].to_s.gsub(/[^a-zA-Z0-9\-_\.\/]/, '')
+      
       x = x.to_i
       y = y.to_i
       z = z.to_i
@@ -27,7 +45,7 @@ class WhootsApp
       #calculate the bbox
       bbox = get_tile_bbox(x,y,z)
       #build up the other params
-      format = "image/png"
+      format = query_params["format"] == "image/jpeg" ? "image/jpeg" : "image/png"
       service = "WMS"
       version = "1.1.1"
       request = "GetMap"
@@ -35,16 +53,20 @@ class WhootsApp
       width = "256"
       height = "256"
       layers = layer || ""
-
-      map = query_params["map"] || ""
+      
+      # Only include map parameter if it exists and is not empty
+      map_param = ""
+      unless query_params["map"].to_s.empty?
+        map = query_params["map"].to_s.gsub(/[^a-zA-Z0-9\-_\.\/]/, '')
+        map_param = "&map=" + map
+      end
+      
       base_url = splat
-      url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers+"&map="+map+"&styles="
+      url = base_url + "?"+ "bbox="+bbox+"&format="+format+"&service="+service+"&version="+version+"&request="+request+"&srs="+srs+"&width="+width+"&height="+height+"&layers="+layers+map_param+"&styles="
 
-      response = Rack::Response.new
-      response.redirect(url, 302)
-      response.finish
+      return [302, {'Location' => url}, []]
     else
-      Rack::Response.new("<html>Not found. <a href='/'>Whoots</a></html>", 404)
+      Rack::Response.new(["<html>Not found. <a href='/'>Whoots</a></html>"], 404).finish
     end
   end
   

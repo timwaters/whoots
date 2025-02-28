@@ -17,6 +17,12 @@ h2. Usage
 
 <b>http://example.com/tms/z/x/y/{layer}/http://path.to.wms.server</b>
 
+defaults to png. Optionally pass in ?format=image/jpeg for jpeg e.g.
+
+http://whoots.mapwarper.net/tms/z/x/y/{layer}/http://path.to.wms.server?format=image/jpeg
+
+
+
 h2. Examples
 * 1 <code>http://example.com/tms/!/!/!/2013/http://warper.geothings.net/maps/wms/2013 </code>
 *
@@ -30,4 +36,14 @@ h2. Notes
 * Gives OSM/Google Tiles only, so make sure the WMS server support EPSG:3857
 * Doesn't do any caching.
 * See public/index.html for more examples and help!
+
+
+h2. puma
+
+for development:
+bundle exec puma -C config/puma/development.rb
+
+for production:
+RACK_ENV=production bundle exec puma -C config/puma/production.rb
+
 
